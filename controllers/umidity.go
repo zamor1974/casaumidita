@@ -73,7 +73,7 @@ func ErrHandler(errmessage string) *CommonError {
 	return &errresponse
 }
 
-// swagger:route GET /humidities list of humidity values
+// swagger:route GET /humidities listhumidity
 // Get humidity list
 //
 // security:
@@ -101,7 +101,7 @@ func (h *BaseHandlerSqlx) GetHumiditiesSqlx(w http.ResponseWriter, r *http.Reque
 // - apiKey: []
 // responses:
 //  401: CommonError
-//  200: GetRains
+//  200: GetHumidities
 func (h *BaseHandlerSqlx) GetLastHourSqlx(w http.ResponseWriter, r *http.Request) {
 	response := GetHumidities{}
 
@@ -115,7 +115,7 @@ func (h *BaseHandlerSqlx) GetLastHourSqlx(w http.ResponseWriter, r *http.Request
 	json.NewEncoder(w).Encode(response)
 }
 
-// swagger:route POST /humidity add Humidity value
+// swagger:route POST /humidity addHumidity
 // Create a new humidity value
 //
 // security:

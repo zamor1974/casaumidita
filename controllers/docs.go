@@ -1,5 +1,5 @@
-//  Rain Api:
-//   version: 0.1.3
+//  Humidity Api:
+//   version: 0.1.1
 //   title: Umidity Api
 //  Schemes: http, https
 //  BasePath:

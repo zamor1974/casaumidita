@@ -39,10 +39,10 @@ func main() {
 		w.Write([]byte("{\"hello\": \"world\"}"))
 	})
 
-	pioggia := r.PathPrefix("/").Subrouter()
-	pioggia.HandleFunc("/humidity", hsqlx.PostHumiditySqlx).Methods("POST")
-	pioggia.HandleFunc("/himidities", hsqlx.GetHumiditiesSqlx).Methods("GET")
-	pioggia.HandleFunc("/lasthour", hsqlx.GetLastHourSqlx).Methods("GET")
+	unidita := r.PathPrefix("/").Subrouter()
+	unidita.HandleFunc("/humidity", hsqlx.PostHumiditySqlx).Methods("POST")
+	unidita.HandleFunc("/humidities", hsqlx.GetHumiditiesSqlx).Methods("GET")
+	unidita.HandleFunc("/lasthour", hsqlx.GetLastHourSqlx).Methods("GET")
 
 	http.Handle("/", r)
 	s := &http.Server{
