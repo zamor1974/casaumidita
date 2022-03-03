@@ -1,8 +1,8 @@
 package main
 
 import (
-	"casapioggia/config"
-	"casapioggia/controllers"
+	"casaumidita/config"
+	"casaumidita/controllers"
 	"fmt"
 	"net/http"
 
@@ -40,13 +40,13 @@ func main() {
 	})
 
 	pioggia := r.PathPrefix("/").Subrouter()
-	pioggia.HandleFunc("/rain", hsqlx.PostRainSqlx).Methods("POST")
-	pioggia.HandleFunc("/rains", hsqlx.GetRainsSqlx).Methods("GET")
+	pioggia.HandleFunc("/humidity", hsqlx.PostHumiditySqlx).Methods("POST")
+	pioggia.HandleFunc("/himidities", hsqlx.GetHumiditiesSqlx).Methods("GET")
 	pioggia.HandleFunc("/lasthour", hsqlx.GetLastHourSqlx).Methods("GET")
 
 	http.Handle("/", r)
 	s := &http.Server{
-		Addr:    fmt.Sprintf("%s:%s", "", "5555"),
+		Addr:    fmt.Sprintf("%s:%s", "", "5556"),
 		Handler: cors.Default().Handler(r),
 	}
 	s.ListenAndServe()

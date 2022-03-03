@@ -1,7 +1,7 @@
 package config
 
 import (
-	"casapioggia/constants"
+	"casaumidita/constants"
 	"fmt"
 
 	"github.com/jmoiron/sqlx"

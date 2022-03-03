@@ -1,7 +1,7 @@
 package lang
 
 import (
-	"casapioggia/constants"
+	"casaumidita/constants"
 )
 
 type Tags map[string]Texts

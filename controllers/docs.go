@@ -1,6 +1,6 @@
 //  Rain Api:
 //   version: 0.1.3
-//   title: Rain Api
+//   title: Umidity Api
 //  Schemes: http, https
 //  BasePath:
 //  Produces:
