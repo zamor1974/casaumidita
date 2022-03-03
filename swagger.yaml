@@ -1,0 +1,180 @@
+definitions:
+  CommonError:
+    properties:
+      message:
+        description: |-
+          Message of the error
+          in: string
+        type: string
+        x-go-name: Message
+      status:
+        description: |-
+          Status of the error
+          in: int64
+        format: int64
+        type: integer
+        x-go-name: Status
+    type: object
+    x-go-package: casapioggia/controllers
+  CommonSuccess:
+    properties:
+      message:
+        description: |-
+          Message of the error
+          in: string
+        type: string
+        x-go-name: Message
+      status:
+        description: |-
+          Status of the error
+          in: int64
+        format: int64
+        type: integer
+        x-go-name: Status
+    type: object
+    x-go-package: casapioggia/controllers
+  GetRain:
+    properties:
+      data:
+        $ref: '#/definitions/Rain'
+      message:
+        description: |-
+          Message of the response
+          in: string
+        type: string
+        x-go-name: Message
+      status:
+        description: |-
+          Status of the error
+          in: int64
+        format: int64
+        type: integer
+        x-go-name: Status
+    type: object
+    x-go-package: casapioggia/controllers
+  GetRains:
+    properties:
+      data:
+        $ref: '#/definitions/Rains'
+      message:
+        description: |-
+          Message of the response
+          in: string
+        type: string
+        x-go-name: Message
+      status:
+        description: |-
+          Status of the error
+          in: int64
+        format: int64
+        type: integer
+        x-go-name: Status
+    type: object
+    x-go-package: casapioggia/controllers
+  Rain:
+    properties:
+      data_inserimento:
+        description: |-
+          Timestamp of insert
+          in: time
+        format: date-time
+        type: string
+        x-go-name: DateInsert
+      id:
+        description: |-
+          Id of rain value
+          in: int64
+        format: int64
+        type: integer
+        x-go-name: Id
+      valore:
+        description: |-
+          Value of rain
+          in: int
+        format: int64
+        type: integer
+        x-go-name: Value
+    type: object
+    x-go-package: casapioggia/models
+  Rains:
+    items:
+      $ref: '#/definitions/Rain'
+    type: array
+    x-go-package: casapioggia/models
+  ReqAddRain:
+    properties:
+      valore:
+        description: |-
+          Value of the rain
+          in: int
+        format: int64
+        type: integer
+        x-go-name: Value
+    type: object
+    x-go-package: casapioggia/models
+info:
+  title: 'Rain Api:'
+  version: 0.1.3
+paths:
+  /lasthour:
+    get:
+      description: Get list of last hour of rain .... or the last value inserted
+      operationId: listRain
+      responses:
+        "200":
+          description: GetRains
+          schema:
+            $ref: '#/definitions/GetRains'
+        "401":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      security:
+      - apiKey:
+        - '[]'
+  /rain:
+    post:
+      description: Create a new rain value
+      operationId: addRain
+      parameters:
+      - description: 'name: body'
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/ReqAddRain'
+        x-go-name: Body
+      responses:
+        "200":
+          description: GetRain
+          schema:
+            $ref: '#/definitions/GetRain'
+        "401":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      security:
+      - apiKey:
+        - '[]'
+  /rains:
+    get:
+      description: Get rains list
+      operationId: listRain
+      responses:
+        "200":
+          description: GetRains
+          schema:
+            $ref: '#/definitions/GetRains'
+        "401":
+          description: CommonError
+          schema:
+            $ref: '#/definitions/CommonError'
+      security:
+      - apiKey:
+        - '[]'
+produces:
+- application/json
+schemes:
+- http
+- https
+swagger: "2.0"
