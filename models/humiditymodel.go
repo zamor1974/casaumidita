@@ -72,7 +72,7 @@ func GetHumiditiesSqlx(db *sql.DB) *Humidities {
 }
 func GetLastHumiditySqlx(db *sql.DB) *Humidities {
 	humidities := Humidities{}
-	rows, err := db.Query("SELECT id, valore, data_inserimento FROM umidita where id = (select max(id) from unidita)")
+	rows, err := db.Query("SELECT id, valore, data_inserimento FROM umidita where id = (select max(id) from umidita)")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -129,7 +129,7 @@ func PostHumiditySqlx(db *sql.DB, reqHumidity *ReqAddHumidity) (*Humidity, strin
 	lastInsertId := 0
 
 	//sqlStatement := fmt.Sprintf("insert into 'pioggia' ('valore','data_inserimento') values (%d,CURRENT_TIMESTAMP) RETURNING id", value)
-	sqlStatement := fmt.Sprintf("insert into umidita (valore,data_inserimento) values (%d,CURRENT_TIMESTAMP) RETURNING id", value)
+	sqlStatement := fmt.Sprintf("insert into umidita (valore,data_inserimento) values (%f,CURRENT_TIMESTAMP) RETURNING id", value)
 
 	err := db.QueryRow(sqlStatement).Scan(&lastInsertId)
 

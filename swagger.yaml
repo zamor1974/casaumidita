@@ -107,8 +107,8 @@ definitions:
         description: |-
           Value of the Humidity
           in: int
-        format: int64
-        type: integer
+        format: float
+        type: number
         x-go-name: Value
     type: object
     x-go-package: casaumidita/models
