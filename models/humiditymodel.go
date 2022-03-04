@@ -27,7 +27,7 @@ type Humidities []Humidity
 type ReqAddHumidity struct {
 	// Value of the Humidity
 	// in: int
-	Value int `json:"valore" validate:"required"`
+	Value float32 `json:"valore" validate:"required"`
 }
 
 // swagger:parameters add Humidity
@@ -72,7 +72,7 @@ func GetHumiditiesSqlx(db *sql.DB) *Humidities {
 }
 func GetLastHumiditySqlx(db *sql.DB) *Humidities {
 	humidities := Humidities{}
-	rows, err := db.Query("SELECT id, valore, data_inserimento FROM umidita where id = (select max(id) from pioggia)")
+	rows, err := db.Query("SELECT id, valore, data_inserimento FROM umidita where id = (select max(id) from unidita)")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -130,7 +130,6 @@ func PostHumiditySqlx(db *sql.DB, reqHumidity *ReqAddHumidity) (*Humidity, strin
 
 	//sqlStatement := fmt.Sprintf("insert into 'pioggia' ('valore','data_inserimento') values (%d,CURRENT_TIMESTAMP) RETURNING id", value)
 	sqlStatement := fmt.Sprintf("insert into umidita (valore,data_inserimento) values (%d,CURRENT_TIMESTAMP) RETURNING id", value)
-	log.Println(sqlStatement)
 
 	err := db.QueryRow(sqlStatement).Scan(&lastInsertId)
 

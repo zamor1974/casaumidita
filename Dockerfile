@@ -21,6 +21,6 @@ RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 COPY --from=0 /app .
 
-EXPOSE 5555
+EXPOSE 5556
 
 CMD ["./app"]
